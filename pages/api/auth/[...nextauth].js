@@ -12,7 +12,7 @@ async function refreshAccessToken(token){
             ...token,
             accessToken:refreshedToken.access_token,
             accessTokenExpires:Date.now( ) + refreshedToken.expires_in * 1000, // 1 hour as 3600 return from spotify api 
-            refreshToken:refreshedToken.refresh_token??token.refreshToken // refresh if new token comes or else fall back to old one 
+            refreshToken:refreshedToken.refresh_token?refreshedToken.refresh_token:token.refreshToken // refresh if new token comes or else fall back to old one 
         }
 
     }catch (error){
